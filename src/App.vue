@@ -26,6 +26,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgb(39, 39, 39);
-  padding: 25px;
 }
 </style>

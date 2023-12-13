@@ -1,8 +1,8 @@
 <template>
-  <div class="Landing">
-    <Header/>
+  <div class="container">
+    <div class="Landing">
+      <Header/>
 
-    <div class="container">
       <div class="wrapper">
         <section class="main">
           <h1> Choose, Customize & Publish </h1>
@@ -12,64 +12,83 @@
           </p>
           <div class="plan-select">
             <div class="plan-buttons">
-              <button @click="setMonthlyPlan" :class="['plan-default-btn btn-monthly', planType === 'M' && 'plan-active-btn']">MONTHLY</button>
-              <button @click="setYearlyPlan" :class="['plan-default-btn btn-yearly', planType === 'Y' && 'plan-active-btn']">ANNUALLY</button>
+              <button
+                @click="setPlanType('M')"
+                :class="['plan-btn-default btn-monthly', planType === 'M' && 'plan-btn-active']"
+              >
+                MONTHLY
+              </button>
+              <button
+                @click="setPlanType('Y')"
+                :class="['plan-btn-default btn-yearly', planType === 'Y' && 'plan-btn-active']"
+              >
+                ANNUALLY
+              </button>
             </div>
           </div>
         </section>
 
         <aside class="content">
-          <Plans />
+          <PlanView
+            :plan-type="planType"
+            @openForm="togglePlanForm"
+          />
         </aside>
       </div>
+
+      <Footer/>
     </div>
 
-    <Footer/>
+    <PlanForm
+      :open-dialog="openDialog"
+      @closeForm="togglePlanForm"
+    />
   </div>
 </template>
 
 <script>
   import Header from './Header.vue';
-  import Plans from './Plans.vue';
+  import PlanView from './PlanView.vue';
+  import PlanForm from './PlanForm.vue';
   import Footer from './Footer.vue';
   
   export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Landing',
     components: {
-      Header, Plans, Footer
+      Header, PlanView, PlanForm, Footer
     },
     props: {
       msg: String
     },
     data() {
       return {
-        planType: 'M'
+        planType: 'M',
+        openDialog: false,
       };
     },
     methods: {
-      setMonthlyPlan() {
-        this.planType = 'M'
+      setPlanType(plan) {
+        this.planType = plan;
       },
-      setYearlyPlan() {
-        this.planType = 'Y'
+      togglePlanForm() {
+        this.openDialog = !this.openDialog;
       }
     }
   }
 </script>
 
-<style scoped>
+<style>
   h1 {
     font-size: 3em;
   }
   .Landing {
     margin: 0;
-  }
-  .container {
-    margin-top: 10rem;
+    padding: 25px;
   }
   .wrapper {
     display: flex;
+    margin-top: 10rem;
   }
   .wrapper section {
     flex: 2;
@@ -77,7 +96,6 @@
   }
   .wrapper aside {
     flex: 2;
-    border: 1px solid green;
   }
   .grey-color {
     color: gray;
@@ -90,16 +108,17 @@
     display: flex;
     margin-top: 25px;
   }
-  .plan-default-btn {
-    border: 1px solid grey;
+  button,
+  .plan-btn-default {
+    border: 1px solid #d8d8d8;
     padding: 15px 25px;
-    border-radius: 45px;
+    border-radius: 5px;
     cursor: pointer;
     background: white;
   }
-  .plan-active-btn {
+  .plan-btn-active {
     color: white;
-    background: rgb(33, 33, 189);
+    background: #009DFF;
   }
   .btn-monthly {
     border-right: none;
@@ -110,5 +129,8 @@
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+  }
+  ::-webkit-scrollbar {
+    display: none;
   }
 </style>

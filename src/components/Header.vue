@@ -24,7 +24,6 @@
   }
 </script>
   
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   nav, ul {
     margin: 0;
@@ -49,5 +48,8 @@
   }
   .active {
     font-weight: bold;
+  }
+  .start {
+    border-bottom: 3px solid #009DFF;
   }
 </style> 
