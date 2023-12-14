@@ -11,7 +11,7 @@
           <span>{{ planType }}</span>
         </h2>
         <div class="columns">
-          <div class="column">
+          <div class="column p-relative">
             <label
               for="plan-name"
               class="plan-name-label d-block sm-txt mb-10px"
@@ -26,12 +26,12 @@
               placeholder="Name the plan"
               required
             />
-            <span v-if="invalidField.planName" class="plan-name-invalidField">
+            <span v-if="invalidField.planName" class="plan-field-error plan-name-invalidField">
               {{ error.planName }}
             </span>
           </div>
 
-          <div class="column">
+          <div class="column p-relative">
             <label
               for="language"
               class="language-label d-block sm-txt mb-10px"
@@ -48,7 +48,7 @@
               <option value="ES">Spanish</option>
               <option value="DE">German</option>
             </select>
-            <span v-if="invalidField.language" class="language-invalidField">
+            <span v-if="invalidField.language" class="plan-field-error language-invalidField">
               {{ error.language }}
             </span>
           </div>
@@ -57,7 +57,7 @@
 
         <h2>Billing Definitions</h2>
         <div class="columns">
-          <div class="column">
+          <div class="column p-relative">
             <label
               for="plan-price"
               class="plan-price-label d-block sm-txt mb-10px"
@@ -72,12 +72,12 @@
               placeholder="$999"
               required
             />
-            <span v-if="invalidField.planPrice" class="plan-name-invalidField">
+            <span v-if="invalidField.planPrice" class="plan-field-error plan-name-invalidField">
               {{ error.planPrice }}
             </span>
           </div>
 
-          <div class="column">
+          <div class="column p-relative">
             <label
               for="currency"
               class="currency-label d-block sm-txt mb-10px"
@@ -92,7 +92,7 @@
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
             </select>
-            <span v-if="invalidField.currency" class="language-invalidField">
+            <span v-if="invalidField.currency" class="plan-field-error language-invalidField">
               {{ error.currency }}
             </span>
           </div>
@@ -101,7 +101,7 @@
 
         <h2>Product Definitions</h2>
         <div class="columns mb-2rem">
-          <div class="column mr-7rem">
+          <div class="column mr-7rem p-relative">
             <label
               for="trip-type"
               class="trip-type-label d-block sm-txt mb-10px"
@@ -131,12 +131,12 @@
                 <label for="roundtrip">Roundtrip</label>
               </div>
             </div>
-            <span v-if="invalidField.tripType" class="trip-type-invalidField">
+            <span v-if="invalidField.tripType" class="plan-field-error trip-type-invalidField">
               {{ error.tripType }}
             </span>
           </div>
 
-          <div class="column">
+          <div class="column p-relative">
             <label
               for="quota-amount"
               class="quota-amount-label d-block sm-txt mb-10px"
@@ -158,7 +158,7 @@
               <option value="per-month">per month</option>
               <option value="per-year">per year</option>
             </select>
-            <span v-if="invalidField.quotaAmount" class="quota-amount-invalidField">
+            <span v-if="invalidField.quotaAmount" class="plan-field-error quota-amount-invalidField">
               {{ error.quotaAmount }}
             </span>
           </div>
@@ -204,7 +204,7 @@
             </div>
           </div>
 
-          <div class="column">
+          <div class="column p-relative">
             <label
               class="lockin-period-label d-block sm-txt mb-10px"
             >
@@ -240,14 +240,14 @@
                 </label>
               </div>
             </div>
-            <span v-if="invalidField.lockinPeriod" class="lockin-period-invalidField">
+            <span v-if="invalidField.lockinPeriod" class="plan-field-error lockin-period-invalidField">
               {{ error.lockinPeriod }}
             </span>
           </div>
         </div>
 
         <div class="columns mb-2rem">
-          <div class="column mr-4rem">
+          <div class="column mr-4rem p-relative">
             <label class="advance-purchase-label d-block sm-txt mb-10px">
               Advance Purchase (days)
             </label>
@@ -257,12 +257,12 @@
               <input v-model="purchaseValue" type="range" min="0" max="30" class="advance-purchase-input" />
               <span class="purchase-value">{{ purchaseValue }}</span>
             </div>
-            <span v-if="invalidField.advancePurchase" class="lockin-period-invalidField">
+            <span v-if="invalidField.advancePurchase" class="plan-field-error lockin-period-invalidField">
               {{ error.advancePurchase }}
             </span>
           </div>
 
-          <div class="column">
+          <div class="column p-relative">
             <label class="booking-window-label d-block sm-txt mb-10px">
               Booking Window (days)
             </label>
@@ -279,7 +279,7 @@
         </div>
         
         <div class="columns">
-          <div class="column">
+          <div class="column p-relative">
             <label
               for="fare-class"
               class="fare-class-label d-block sm-txt mb-10px"
@@ -293,7 +293,7 @@
               class="fare-class-input md-input"
               placeholder="$999"
             />
-            <span v-if="invalidField.fareClass" class="lockin-period-invalidField">
+            <span v-if="invalidField.fareClass" class="plan-field-error lockin-period-invalidField">
               {{ error.fareClass }}
             </span>
           </div>
@@ -352,7 +352,7 @@
         quotaAmount: 'The quato amount is incorrect',
         advancePurchase: 'The advance purchase is incorrect',
         bookingWindow: 'The booking window is incorrect',
-        fareClass: 'The fare class in incorrect'
+        fareClass: 'The fare in incorrect'
       }
     };
   },
@@ -605,5 +605,16 @@
   }
   .items-center {
     align-items: center;
+  }
+
+  .plan-field-error {
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    font-size: .7em;
+    color: rgb(255, 21, 21);
+  }
+  .p-relative {
+    position: relative;
   }
 </style>

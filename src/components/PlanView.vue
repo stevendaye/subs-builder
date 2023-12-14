@@ -87,6 +87,10 @@
     color: white;
     margin-top: 12rem;
   }
+  .plan-btn-start:hover {
+    background: white;
+    border: 1px solid black;
+  }
   .plan-btn-edit,
   .plan-btn-publish {
     padding-left: 45px;
