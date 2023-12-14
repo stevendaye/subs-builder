@@ -10,17 +10,19 @@
             At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis
             praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint.
           </p>
+
+          <h3 class="mt-2rem">Select Your Plan</h3>
           <div class="plan-select">
             <div class="plan-buttons">
               <button
-                @click="setPlanType('M')"
-                :class="['plan-btn-default btn-monthly', planType === 'M' && 'plan-btn-active']"
+                @click="setPlanType('Monthly')"
+                :class="['plan-btn-default btn-monthly', planType === 'Monthly' && 'plan-btn-active']"
               >
                 MONTHLY
               </button>
               <button
-                @click="setPlanType('Y')"
-                :class="['plan-btn-default btn-yearly', planType === 'Y' && 'plan-btn-active']"
+                @click="setPlanType('Annual')"
+                :class="['plan-btn-default btn-annual', planType === 'Annual' && 'plan-btn-active']"
               >
                 ANNUALLY
               </button>
@@ -35,11 +37,10 @@
           />
         </aside>
       </div>
-
-      <Footer/>
     </div>
 
     <PlanForm
+      :plan-type="planType"
       :open-dialog="openDialog"
       @closeForm="togglePlanForm"
     />
@@ -50,20 +51,19 @@
   import Header from './Header.vue';
   import PlanView from './PlanView.vue';
   import PlanForm from './PlanForm.vue';
-  import Footer from './Footer.vue';
   
   export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Landing',
     components: {
-      Header, PlanView, PlanForm, Footer
+      Header, PlanView, PlanForm
     },
     props: {
       msg: String
     },
     data() {
       return {
-        planType: 'M',
+        planType: 'Monthly',
         openDialog: false,
       };
     },
@@ -106,7 +106,7 @@
 
   .plan-select {
     display: flex;
-    margin-top: 25px;
+    margin-top: -10px;
   }
   button,
   .plan-btn-default {
@@ -125,7 +125,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
-  .btn-yearly {
+  .btn-annual {
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

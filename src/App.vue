@@ -17,9 +17,11 @@ export default {
 
 <style>
 body {
-  background: rgb(240, 240, 234);
+  background-image: linear-gradient(#f0f0ea, #d8d8d8, #009DFF);
   margin: 0;
   padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -2,8 +2,8 @@
   <div class="plan">
     <div class="plan-container">
       <article class="plan-wrapper">
-        <p v-if="planType==='M'" class="plan-type">MONTHLY PLAN</p>
-        <p v-else class="plan-type">YEARLY PLAN</p>
+        <p v-if="planType==='Monthly'" class="plan-type">MONTHLY PLAN</p>
+        <p v-else class="plan-type">ANNUAL PLAN</p>
         <p class="plan-intro">
           Get Started with customizing your plan. You can review edit and pusblish your finished plan with our dedicated controls
         </p>
