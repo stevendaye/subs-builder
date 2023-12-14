@@ -32,6 +32,7 @@
 
         <aside class="content">
           <PlanView
+            :saved-selection="savedSelection"
             :plan-type="planType"
             @openForm="togglePlanForm"
           />
@@ -43,6 +44,7 @@
       :plan-type="planType"
       :open-dialog="openDialog"
       @closeForm="togglePlanForm"
+      @saveSelection="saveSelection"
     />
   </div>
 </template>
@@ -65,6 +67,7 @@
       return {
         planType: 'Monthly',
         openDialog: false,
+        savedSelection: false,
       };
     },
     methods: {
@@ -73,6 +76,11 @@
       },
       togglePlanForm() {
         this.openDialog = !this.openDialog;
+      },
+      saveSelection() {
+        this.savedSelection = true;
+        this.openDialog = !this.openDialog;
+        console.log('Selection Saved!');
       }
     }
   }

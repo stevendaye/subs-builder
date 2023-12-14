@@ -172,6 +172,7 @@
 
             <div class="plan-routes-btn mt-10px">
               <button
+                type="button"
                 @click="setRoute('Network')"
                 :class="[
                   'plan-btn-network',
@@ -181,6 +182,7 @@
                 All Network
               </button>
               <button
+                type="button"
                 @click="setRoute('Group')"
                 :class="[
                   'plan-btn-group',
@@ -190,6 +192,7 @@
                 A group
               </button>
               <button
+                type="button"
                 @click="setRoute('Specific')"
                 :class="[
                   'plan-btn-specific',
@@ -355,7 +358,12 @@
   },
   methods: {
     saveForm() {
-      console.log('Form Saved!');
+      const hasValidEntries = this.validatePlanEntries();
+      if (hasValidEntries) {
+        this.$emit('saveSelection');
+      } else {
+        console.log('Wrong Entries');
+      }
     },
     closeForm() {
       this.$emit('closeForm');
@@ -363,6 +371,33 @@
     },
     setRoute(route) {
       this.includedRoute = route;
+    },
+    validatePlanEntries() {
+      if (!this.planName) {
+        this.invalidField.planName = true;
+        return false;
+      } else {
+        this.invalidField.planName = false;
+      }
+      if (!this.planPrice) {
+        this.invalidField.planPrice = true;
+        return false;
+      } else {
+        this.invalidField.planPrice = false;
+      }
+      if (!this.quotaAmountNumber || !parseInt(this.quotaAmountNumber)) {
+        this.invalidField.quotaAmount = true;
+        return false;
+      } else {
+        this.invalidField.quotaAmount = false;
+      }
+      if (!this.fareClass || !parseInt(this.fareClass)) {
+        this.invalidField.fareClass =true;
+        return false;
+      } else {
+        this.invalidField.fareClass =false;
+      }
+      return true;
     }
   }
  }
